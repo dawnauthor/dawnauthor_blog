@@ -1,12 +1,14 @@
 import Head from 'next/head'
 
 import {PostCard, Categories, PostWidget } from '../components';
+import { getPosts } from '../services';
 
-const posts = [
-	{ title: 'React Testing', excerpt: 'Learn react testing' },
-	{ title: 'React with Tailwind', excerpt: 'Learn React with Tailwind' },
-];
-export default function Home() {
+/**
+ *	In NextJS, you can define async functions at the bottom of your component, ensuring you use the 'getStaticProps' naming convention
+ *	as well as the proper return type of object with property 'props'. These are immediately available to the component itself, and can be passed in as the arguments
+ *	In this case, as { posts }
+ */
+export default function Home({ posts }) {
 	return (
 		<div className="container mx-auto px-10 mb-8">
 			<Head>
@@ -29,3 +31,11 @@ export default function Home() {
 		</div>
 	);
 };
+
+export async function getStaticProps() {
+	const posts = (await getPosts()) || [];
+
+	return {
+		props: { posts }
+	};
+}
