@@ -3,11 +3,12 @@ import { Layout } from '../components';
 
 import 'tailwindcss/tailwind.css'
 import '../styles/globals.scss';
-function MyApp({ Component, pageProps }) {
+
+function BlogApp({ Component, pageProps }) {
 	return (
 		<Layout>
 			<Component {...pageProps} />
 		</Layout>
 	);
 }
-export default MyApp;
+export default BlogApp;
